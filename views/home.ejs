@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+  <%- include("partials/header.ejs") %>
+  
+  <div class="container-fluid p-4 sm:p-10 md:p-16 sm:pt-2 md:pt-2  bg-green-100 ">
+    <img src="/image.png" alt="Website Logo" class="w-full  h-80 md:h-64 object-cover ">
+
+    <br>
+    <% if (books.length > 0) { %>
+      <% books.forEach(book => { %>
+
+        <div class="book-details flex flex-wrap justify-center mb-6 animate ">
+          <div class="book-cover w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 p-2">
+            <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" alt="<%= book.title %> Cover" class="w-40 h-auto rounded-lg object-contain" loading="lazy">
+          </div>
+          <div class="book-info w-2/3 md:w-3/4 lg:w-4/5 xl:w-5/6 p-4">
+            <h2 class="text-xl mb-2"><%= book.title %></h2>
+            <p class="text-md text-gray-600 mb-2">By <%= book.author %></p>
+            <p class="text-md text-orange-600 font-bold mb-2">Rating: <%= book.rating %>/5</p>
+            <p class="text-md text-gray-600 mb-2"> <span class="text-gray-700 font-semibold">Date Read : </span> <%= book.date_read.toLocaleString('en-US', { dateStyle: 'medium' }) %></p>
+            
+            <p class="text-md text-gray-600 mb-2 lg:pr-20 text-ellipsis line-clamp-5 text-justify "> <span class="text-gray-700 font-semibold"> Summary : </span><%= book.summary %>  </p>
+
+
+            <p class="text-md text-gray-600 mb-2"><span class="text-gray-700 font-semibold">ISBN : </span> <%= book.isbn %></p>
+            <button class="bg-[#25806f] hover:bg-[#47baa5] text-white font-bold py-2 px-4 rounded" onclick="window.location.href='/book/<%= book.isbn %>'">Read Full Book</button>
+       
+          </div>
+          
+        </div>
+        <hr>
+        <br>
+      <% }); %>
+    <% } else { %>
+      <p class="text-lg text-gray-600 mb-2">No books found.</p>
+    <% } %>
+  </div>
+
+</body>
+</html>

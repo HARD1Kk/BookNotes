@@ -1,0 +1,116 @@
+
+<footer class="bg-gray-800 text-white text-center py-4">
+    <p>&copy; 2025 Book Notes. All rights reserved.</p>
+</footer>
+
+<script>
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+   
+    const links = document.querySelectorAll('.nav-link');
+
+links.forEach((link) => {
+  link.addEventListener('click', () => {
+    links.forEach((otherLink) => {
+      otherLink.classList.remove('active');
+    });
+    link.classList.add('active');
+  });
+});
+
+const refreshPage = document.querySelector('.site-refresh')
+
+refreshPage.addEventListener('click' , () => {
+  window.location.href = '/';
+  refreshPage.style.cursor = 'pointer';
+})
+
+// Get all book elements
+const books = document.querySelectorAll('.book-details');
+
+// Function to animate book elements on scroll
+function animateBooks() {
+  // Get the current scroll position
+  const scrollPosition = window.scrollY;
+
+  // Loop through each book element
+  books.forEach((book, index) => {
+    // Get the book element's offset top position
+    const bookTop = book.offsetTop;
+
+    // Check if the book element is in view
+    if (scrollPosition >= bookTop - window.innerHeight / 1) {
+      // Add the 'show' class to animate the book element
+      book.classList.add('show');
+    }
+  });
+}
+
+// Add event listener to window scroll
+window.addEventListener('scroll', animateBooks);
+
+// Call the animateBooks function on page load
+animateBooks();
+
+
+
+
+
+
+
+// Get all book grid items
+const bookGridItems = document.querySelectorAll('.animate');
+console.log(bookGridItems);
+// Function to check if an element is in view
+function isInView(element) {
+  const rect = element.getBoundingClientRect();
+  return rect.top < window.innerHeight && rect.bottom > 0;
+}
+
+// Function to animate elements on scroll
+function animateOnScroll() {
+  bookGridItems.forEach((element) => {
+    if (isInView(element)) {
+      element.classList.add('show');
+    }
+  });
+}
+
+// Add event listener to window scroll
+window.addEventListener('scroll', animateOnScroll);
+
+
+
+// Animate elements on initial load
+animateOnScroll();
+
+
+
+
+
+
+
+// Get the loading screen and book grid elements
+const loadingScreen = document.getElementById('loading-screen');
+const bookGrid = document.getElementById('book-grid');
+
+// Function to show the loading screen
+function showLoadingScreen() {
+    loadingScreen.classList.remove('hidden');
+    bookGrid.classList.add('opacity-100');
+    setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+        bookGrid.classList.remove('opacity-50');
+    }, 2000); // 5 seconds
+}
+
+// Call the function to show the loading screen
+showLoadingScreen();
+</script>
+</body>
+</html>

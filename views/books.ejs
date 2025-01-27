@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.tailwindcss.com">
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<%- include("partials/header.ejs") %>
+    <hr>
+
+    <body>
+
+     
+
+
+     
+        <div class=" container-fluid   sm:p-10 md:p-16 sm:pt-2 md:pt-2 bg-green-100 "  ">
+               <!-- Your content here -->
+
+                <img src="/image3.png" alt="Website Logo" class="w-full h-80 md:h-64 object-cover">
+                <br>
+
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10 "  id="book-grid">
+                    <% books.forEach((book)=> { %>
+
+                    
+                        <div
+                            class="bg-image shadow-md border-gray-400 lg:border-t lg:border-gray-400 rounded-lg flex flex-col leading-normal animate">
+                            <div class="relative group overflow-hidden rounded-lg shadow-md ">
+                                <img src=https://covers.openlibrary.org/b/isbn/<%=book.isbn %>-L.jpg alt={book.title}
+                                loading="lazy"
+                                class="object-contain mt-4 h-48 w-full mb-4 transition duration-300 transform
+                                group-hover:scale-105" />
+                            </div>
+
+                            <div class="p-4 pt-2 rounded-full">
+                                <div class="mb-8 flex flex-col">
+                                    <button
+                                        class="text-gray-900 max-h-12 font-bold text-lg mb-2 hover:text-green-600 inline-block"
+                                        onclick="window.location.href='/book/<%= book.isbn %>'">
+                                        <%= book.title %>
+                                    </button>
+
+                                    <p
+                                        class="text-gray-700 text-sm truncate overflow-hidden text-ellipsis line-clamp-2">
+                                        <%= book.summary %>
+                                    </p>
+                                </div>
+                                <div class="flex ">
+                                    <img src=https://covers.openlibrary.org/a/olid/<%=book.author_olid %>-S.jpg
+                                    alt={book.author} loading="lazy" class="w-10 h-10 rounded-full mr-4" />
+                                    <div class="text-sm flex-col">
+                                        <a href="#"
+                                            class="text-gray-900 font-semibold leading-none hover:text-indigo-600">
+                                            <%= book.author %>
+                                        </a>
+                                        <p class="text-gray-600">
+                                            <%= book.date_read.toLocaleString('en-US', { dateStyle: 'medium' }) %>
+                                        </p>
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                        <div id="loading-screen" class="hidden absolute top-0 left-0 w-full h-full bg-green-100 flex justify-center items-center">
+                            <span class="sr-only">Loading...</span>
+                            <div class="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                            <div class="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                            <div class="h-8 w-8 bg-black rounded-full animate-bounce"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    <%- include("partials/footer.ejs") %>
+    
+    </html>

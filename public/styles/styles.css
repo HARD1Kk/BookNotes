@@ -1,0 +1,47 @@
+
+.image-bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  backface-visibility: hidden;
+}
+html , body{
+  
+ 
+  scroll-behavior: smooth !important;
+  font-family: monospace;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  background-color: #dcfce7 ;
+}
+
+
+
+
+
+
+.bg-image {
+  background-color: #dcfce7;
+  background-size: cover;
+  background-position: center;
+  
+}
+.animate {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.5s, transform 0.3s;
+}
+
+.animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+#loading-screen {
+  z-index: 1;
+}
+
+#book-grid.opacity-50 {
+  opacity: 0.5;
+  pointer-events: none;
+}

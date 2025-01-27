@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= book.title %> - Book Preview</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body class="bg-gray-100">
+
+ 
+
+  <div class="container mx-auto p-8 bg-white shadow-lg rounded-lg my-8">
+    <button id="back-button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+      Go Back
+    </button>
+    <div class="max-w-4xl mx-auto">
+
+      <h1 class="text-4xl font-bold text-center mb-4 text-green-800"><%= book.title %></h1>
+
+      <p class="text-xl text-center font-semibold mb-6 text-gray-700">By: <%= book.author %></p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <div class="flex justify-center">
+          <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" alt="<%= book.title %>"
+            loading="lazy" class="object-contain border-4 border-green-400 rounded-lg w-full md:w-64 h-auto shadow-lg">
+        </div>
+
+        <div class="flex flex-col justify-center">
+
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-2 text-gray-900">Summary</h2>
+            <p class="text-lg text-gray-800"><%= book.summary %></p>
+          </div>
+
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-2 text-gray-900">Details</h2>
+            <ul class="text-lg text-gray-800">
+              <li><strong>ISBN:</strong> <%= book.isbn %></li>
+              <!-- Add more details if needed -->
+            </ul>
+          </div>
+
+          <div>
+            <a href="https://www.amazon.in/s?k=<%= book.author %> <%= book.title %>" target="_blank" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition duration-300 inline-block">
+              Buy Now
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+<script>
+  document.getElementById("back-button").addEventListener("click", function() {
+  window.history.back();
+});
+</script>
+</html>
